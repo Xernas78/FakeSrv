@@ -20,4 +20,8 @@ It has a chat component format in JSON just like the chat message format at http
 
 You can also add the favicon of the server by adding a 64x64 icon.png file to your server directory.
 
+## Special
+
+You can add a program variable by adding "debug" at the end of your java command to execute the jar (java -jar GlowstoneFake.jar debug) to display the packets sent and received by the server
+
 ### Thanks to https://wiki.vg for all the resources that helped me make this project
