@@ -1,17 +1,19 @@
 package dev.xernas.glowstone.protocol.packets.handshake;
 
+import dev.xernas.glowstone.protocol.models.chat.Color;
+import dev.xernas.glowstone.protocol.models.chat.TextComponent;
 import dev.xernas.glowstone.protocol.packets.IHandler;
 import dev.xernas.glowstone.protocol.packets.status.StatusHandler;
-import dev.xernas.glowstone.protocol.packets.utils.PacketManager;
+import dev.xernas.glowstone.protocol.packets.utils.NetworkManager;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class HandshakeHandler implements IHandler {
 
-    private final PacketManager manager;
+    private final NetworkManager manager;
 
-    public HandshakeHandler(PacketManager manager) {
+    public HandshakeHandler(NetworkManager manager) {
         this.manager = manager;
     }
 
@@ -22,9 +24,11 @@ public class HandshakeHandler implements IHandler {
             if ((Integer) response.get("state") == 1) {
                 manager.nextState(new StatusHandler(manager));
             } else if ((Integer) response.get("state") == 2) {
+                TextComponent reason = new TextComponent("This server doesn't allow players");
+                reason.setColor(Color.RED);
                 manager.getLogger().warn(manager.getClient().getRemoteSocketAddress().toString() + " tried to log in");
+                manager.disconnect(reason);
                 manager.getClient().close();
-                manager.getLogger().disconnect(manager.getClient());
             }
             else {
                 manager.getLogger().warn("Wrong state on Handshake");

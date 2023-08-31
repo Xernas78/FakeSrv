@@ -3,7 +3,7 @@ package dev.xernas.glowstone.server;
 import dev.xernas.glowstone.protocol.models.ServerInfos;
 import dev.xernas.glowstone.protocol.packets.handshake.HandshakeHandler;
 import dev.xernas.glowstone.protocol.packets.utils.MCByteBuf;
-import dev.xernas.glowstone.protocol.packets.utils.PacketManager;
+import dev.xernas.glowstone.protocol.packets.utils.NetworkManager;
 import dev.xernas.glowstone.server.utils.Logger;
 
 import java.io.DataInputStream;
@@ -27,7 +27,7 @@ public class GlowstoneServer extends Thread {
     public void run() {
         try {
             MCByteBuf byteBuf = new MCByteBuf(new DataOutputStream(client.getOutputStream()), new DataInputStream(client.getInputStream()));
-            PacketManager manager = new PacketManager(byteBuf, client, logger, infos);
+            NetworkManager manager = new NetworkManager(byteBuf, client, logger, infos);
             manager.nextState(new HandshakeHandler(manager));
         } catch (IOException e) {
             try {

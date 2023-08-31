@@ -1,16 +1,16 @@
 package dev.xernas.glowstone.protocol.packets.status;
 
 import dev.xernas.glowstone.protocol.packets.IHandler;
-import dev.xernas.glowstone.protocol.packets.utils.PacketManager;
+import dev.xernas.glowstone.protocol.packets.utils.NetworkManager;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class StatusHandler implements IHandler {
 
-    private final PacketManager manager;
+    private final NetworkManager manager;
 
-    public StatusHandler(PacketManager manager) {
+    public StatusHandler(NetworkManager manager) {
         this.manager = manager;
     }
 
