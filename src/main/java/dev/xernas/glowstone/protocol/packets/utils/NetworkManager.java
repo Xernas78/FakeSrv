@@ -19,12 +19,14 @@ public class NetworkManager {
     private final Socket client;
     private final Logger logger;
     private final ServerInfos infos;
+    private final Component kickReason;
 
-    public NetworkManager(MCByteBuf byteBuf, Socket client, Logger logger, ServerInfos infos) {
+    public NetworkManager(MCByteBuf byteBuf, Socket client, Logger logger, ServerInfos infos, Component kickReason) {
         this.byteBuf = byteBuf;
         this.client = client;
         this.logger = logger;
         this.infos = infos;
+        this.kickReason = kickReason;
     }
 
     public void sendPacket(IPacket packet) throws IOException {
@@ -56,8 +58,8 @@ public class NetworkManager {
         return null;
     }
 
-    public void disconnect(Component reason) throws IOException {
-        sendPacket(new DisconnectPacket(reason));
+    public void disconnect() throws IOException {
+        sendPacket(new DisconnectPacket(kickReason));
         logger.disconnect(getClient());
     }
 

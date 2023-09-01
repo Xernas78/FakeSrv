@@ -24,10 +24,8 @@ public class HandshakeHandler implements IHandler {
             if ((Integer) response.get("state") == 1) {
                 manager.nextState(new StatusHandler(manager));
             } else if ((Integer) response.get("state") == 2) {
-                TextComponent reason = new TextComponent("This server doesn't allow players");
-                reason.setColor(Color.RED);
                 manager.getLogger().warn(manager.getClient().getRemoteSocketAddress().toString() + " tried to log in");
-                manager.disconnect(reason);
+                manager.disconnect();
                 manager.getClient().close();
             }
             else {

@@ -1,6 +1,7 @@
 package dev.xernas.glowstone.server;
 
 import dev.xernas.glowstone.protocol.models.ServerInfos;
+import dev.xernas.glowstone.protocol.models.chat.Component;
 import dev.xernas.glowstone.server.utils.Logger;
 
 import java.io.IOException;
@@ -12,12 +13,14 @@ public class Server {
     private final Logger logger;
     private final int port;
     private final ServerInfos infos;
+    private final Component kickReason;
     private final ServerSocket socket;
 
-    public Server(Logger logger, int port, ServerInfos infos) throws IOException {
+    public Server(Logger logger, int port, ServerInfos infos, Component kickReason) throws IOException {
         this.logger = logger;
         this.port = port;
         this.infos = infos;
+        this.kickReason = kickReason;
         this.socket = new ServerSocket(port, infos.getPlayers().getMax());
     }
 
@@ -27,7 +30,7 @@ public class Server {
             Socket client = socket.accept();
             logger.connect(client);
 
-            new GlowstoneServer(client, logger, infos).start();
+            new GlowstoneServer(client, logger, infos, kickReason).start();
         }
     }
 

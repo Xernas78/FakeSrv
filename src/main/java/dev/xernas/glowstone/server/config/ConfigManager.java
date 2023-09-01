@@ -18,18 +18,22 @@ public class ConfigManager {
 
     private final File configFile;
     private final File motdFile;
+    private final File reasonFile;
     private final File logoFile;
     private final Properties properties;
     private final Component description;
+    private final Component reason;
     private final String imageString;
 
     public ConfigManager() throws Exception {
         String absolutePath = Paths.get("").toAbsolutePath().toString();
         this.configFile = Paths.get(absolutePath, "config.properties").toFile();
         this.motdFile = Paths.get(absolutePath, "motd.json").toFile();
+        this.reasonFile = Paths.get(absolutePath, "kick.json").toFile();
         this.logoFile = Paths.get(absolutePath, "icon.png").toFile();
         this.properties = setupConfig();
         this.description = setupMotd();
+        this.reason = setupDisconnect();
         this.imageString = "data:image/png;base64," + setupLogo();
     }
 
@@ -63,6 +67,15 @@ public class ConfigManager {
             setMotdDefaults();
         }
         FileReader reader = new FileReader(motdFile);
+        JsonElement element = JsonParser.parseReader(reader);
+        return ComponentSerializer.deserialize(element.getAsJsonObject());
+    }
+
+    private Component setupDisconnect() throws Exception {
+        if (existsAndCreate(reasonFile)) {
+            setDisconnectDefaults();
+        }
+        FileReader reader = new FileReader(reasonFile);
         JsonElement element = JsonParser.parseReader(reader);
         return ComponentSerializer.deserialize(element.getAsJsonObject());
     }
@@ -111,6 +124,16 @@ public class ConfigManager {
         fileWriter.close();
     }
 
+    private void setDisconnectDefaults() throws IOException {
+        FileWriter fileWriter = new FileWriter(reasonFile);
+        TextComponent reason = new TextComponent("This server doesn't allow players");
+        reason.setColor(Color.RED);
+        String json = ComponentSerializer.serialize(reason).toString();
+        fileWriter.write(json, 0, json.length());
+        fileWriter.flush();
+        fileWriter.close();
+    }
+
     private ServerInfos.Version getVersion() {
         if (properties.getProperty("version_name") == null) {
             return null;
@@ -146,5 +169,9 @@ public class ConfigManager {
                 getDescription(),
                 getFavicon()
         );
+    }
+
+    public Component getReason() {
+        return reason;
     }
 }

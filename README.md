@@ -16,6 +16,11 @@ Then you can modify server.properties which has 4 properties:
 You can also modify the motd.json file which is the MOTD of the server !
 It has a chat component format in JSON just like the chat message format at https://wiki.vg/Chat#Current_system_.28JSON_Chat.29
 
+## Kick Reason
+
+You can modify the kick message when someone tries to join the server if you want with the kick.json file.
+The JSON format is the same as the motd.json file, simple right ?
+
 ## Favicon
 
 You can also add the favicon of the server by adding a 64x64 icon.png file to your server directory.
