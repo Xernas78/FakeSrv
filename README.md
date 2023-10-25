@@ -1,7 +1,7 @@
 # Fake Amethyst
 An Amethyst version of a Fake Minecraft server that only appears in server list ping (SLP)
 
-You just have to download the last release and execute the jar file like any other jar file
+You just have to download the latest release and execute the jar file like any other jar file
 
 ## server.properties
 
