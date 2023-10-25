@@ -11,6 +11,8 @@ Then you can modify server.properties which has 4 properties:
 - version_name
 - version_protocol
 
+version_protocol is used to determine the version of the server, you can find all the protocols at https://wiki.vg/Protocol_version_numbers
+
 ## MOTD
 
 You can also modify the motd.json file which is the MOTD of the server !
