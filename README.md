@@ -1,4 +1,4 @@
-# Fake Amethyst
+# FakeSRV
 A handmade Minecraft server that only appears in server list ping (SLP)
 
 You just have to download the latest release and execute the jar file like any other jar file
@@ -29,6 +29,6 @@ You can also add the favicon of the server by adding a 64x64 icon.png file to yo
 
 ## Special
 
-You can add a program variable by adding "debug" at the end of your java command to execute the jar (java -jar AmethystFake.jar debug) to display the packets sent and received by the server
+You can add a program variable by adding "debug" at the end of your java command to execute the jar (java -jar FakeSRV.jar debug) to display the packets sent and received by the server
 
 ### Thanks to https://wiki.vg for all the resources that helped me make this project
