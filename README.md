@@ -1,7 +1,7 @@
 # Fake Amethyst
-An Amethyst version of a Fake Minecraft server that only appears in server list ping (SLP)
+A handmade Minecraft server that only appears in server list ping (SLP)
 
-You just have to download the last release and execute the jar file like any other jar file
+You just have to download the latest release and execute the jar file like any other jar file
 
 ## server.properties
 
@@ -10,6 +10,8 @@ Then you can modify server.properties which has 4 properties:
 - players_online
 - version_name
 - version_protocol
+
+version_protocol is used to determine the version of the server, you can find all the protocols at https://wiki.vg/Protocol_version_numbers
 
 ## MOTD
 
