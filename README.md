@@ -29,6 +29,6 @@ You can also add the favicon of the server by adding a 64x64 icon.png file to yo
 
 ## Special
 
-You can add a program variable by adding "debug" at the end of your java command to execute the jar (java -jar FakeSRV.jar debug) to display the packets sent and received by the server
+You can add a program variable by adding "debug" at the end of your java command to execute the jar (java -jar FakeSrv.jar debug) to display the packets sent and received by the server
 
 ### Thanks to https://wiki.vg for all the resources that helped me make this project
