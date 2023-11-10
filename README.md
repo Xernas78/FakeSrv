@@ -8,6 +8,7 @@ You just have to download the latest release and execute the jar file like any o
 Then you can modify server.properties which has 4 properties:
 - players_max
 - players_online
+- port
 - version_name
 - version_protocol
 
